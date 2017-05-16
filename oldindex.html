@@ -1,0 +1,93 @@
+<script type="text/javascript">
+
+window.onload = function(){
+	var cards = [];
+	var count = 0;
+	var openCards = [];
+	
+	function generateCards(){
+		var subList = [];
+		for (var i = 0; i < 12; i++){
+			var card = document.createElement('div');
+			card.style.width = 100;
+			card.style.height = 150;
+			card.style.backgroundColor = "#ff0000";
+			card.style.marginLeft = 12;
+			card.style.marginTop = 12;
+			card.style.float = "left";
+			card.style.cursor = "pointer";
+			card.style.textAlign = "center";
+			card.style.boxSizing = "border-box";
+			card.id = i + 1;
+			card.classList.add("card");
+			var item = {
+				content: card,
+				value: i + 1
+			}
+			subList.push(item);
+		}	
+		return subList;
+	}
+	var cards = generateCards().concat(generateCards());
+	cards.sort(function(a, b){return 0.5 - Math.random()});
+
+	function removeCards(candidate, index){
+		if (candidate === index){
+			alert("we found it");
+		} 
+	}
+
+	for (var j = 0; j < cards.length; j++){
+		cards[j].content.onclick = function(ev){
+			if (count < 2 && ev.target.style.backgroundColor !== ""){
+				count++;
+				openCards.push(ev.target.id);
+				ev.target.style.backgroundColor = "";
+				ev.target.style.border = "solid 1px #ff0000";
+				ev.target.innerHTML = "<span style='position: relative; top: 45'>" +  ev.target.id  + "</span>"; 
+			} else {
+				if (ev.target.style.backgroundColor === ""){
+					count--;
+					var index = openCards.indexOf(ev.target.id);
+					openCards.splice(index, 1);
+					if (ev.target.tagName === "DIV"){
+						ev.target.innerHTML = "";
+						ev.target.style.backgroundColor = "#ff0000";
+						ev.target.style.border = "";
+					} else {
+						ev.target.parentNode.style.backgroundColor = "#ff0000";
+						ev.target.parentNode.style.border ="";
+						ev.target.parentNode.innerHTML = "";
+					}
+				}
+			}
+
+			for (var k = openCards.length; k > 0; k--){
+				if(openCards[k] === openCards[k-1]){
+					alert("match");
+				}
+			}
+		}
+		document.body.appendChild(cards[j].content);
+	}
+}
+
+
+
+</script>
+<style>
+	* {
+		font-family: Futura, Helvetica, sans-serif;
+		font-weight: bold;
+		font-size: 36;
+	}
+
+</style>
+<html>
+	<head>
+		<title>Card Game</title>
+	</head>
+	<body>
+	
+	</body>
+</html>
