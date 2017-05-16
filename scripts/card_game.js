@@ -12,7 +12,6 @@ function generateCards(){
 		card.style.height = 144;
 		card.style.backgroundImage = "url(images/card-down.jpg)";
 		card.style.backgroundSize = "cover";
-		card.style.borderRadius = "8px";
 		card.style.position = "absolute";
 		card.style.float = "left";
 		card.style.cursor = "pointer";
@@ -23,7 +22,7 @@ function generateCards(){
 		var item = {
 			content: card,
 			value: i + 1
-		}
+		};
 		subList.push(item);
 	}	
 	return subList;
@@ -33,9 +32,7 @@ function generateCards(){
 var cards = generateCards().concat(generateCards());
 
 /* randomizes the final array */
-cards.sort(function(){return 0.5 - Math.random()});
-
-
+cards.sort(function(){return 0.5 - Math.random();});
 
 for (var j in cards){
 	/* renders card elements in DOM */
@@ -44,14 +41,14 @@ for (var j in cards){
 	/* absolutely positions cards in grid */
 	var cardLeft, cardTop;
 	if (j < 8){
-		cardLeft = (j * 100) + 12;
+		cardLeft = (j * 100) + (j * 12);
 		cardTop = 12;
 	} else if (j >=8 && j < 16){
-		cardLeft = ((j-8) * 100) + 12;
+		cardLeft = ((j-8) * 100) + ((j-8) * 12);
 		cardTop = 160;
 	} else if (j >= 16){
-		cardLeft = ((j-16) * 100) + 12;
-		cardTop = 316;
+		cardLeft = ((j-16) * 100) + ((j-16) * 12);
+		cardTop = 304;
 	}
 	cards[j].content.style.left = cardLeft;
 	cards[j].content.style.top = cardTop;
@@ -101,7 +98,7 @@ for (var j in cards){
 			} 
 		} else {
 			/* revert card to inactive, face-down state */
-			if (el.style.classList[1] === "active"){
+			if (el.classList[1] === "active"){
 				count--;
 				var index = openCards.indexOf(el.classList[0]);
 				openCards.splice(index, 1);		
@@ -112,5 +109,5 @@ for (var j in cards){
 				el.classList.remove("active");
 			}
 		}
-	}
+	};
 }
