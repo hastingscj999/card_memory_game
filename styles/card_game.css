@@ -16,11 +16,14 @@
 .active {
 	background-image: none;
 	border: solid 1px #152b4f;
+	display: table;
 }
 
 .data {
 	pointer-events: none;
 	font-size: 36;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #congrats {
