@@ -45,10 +45,10 @@ for (var j in cards){
 		cardTop = 12;
 	} else if (j >=8 && j < 16){
 		cardLeft = ((j-8) * 100) + ((j-8) * 12);
-		cardTop = 160;
+		cardTop = 168;
 	} else if (j >= 16){
 		cardLeft = ((j-16) * 100) + ((j-16) * 12);
-		cardTop = 304;
+		cardTop = 324;
 	}
 	cards[j].content.style.left = cardLeft;
 	cards[j].content.style.top = cardTop;
