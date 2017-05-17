@@ -52,6 +52,9 @@ for (var j in cards){
 	}
 	cards[j].content.style.left = cardLeft;
 	cards[j].content.style.top = cardTop;
+	
+	/* expose the delay time for flipping or removing cards */
+	var delay = 250;
 
 	/* revert an array of cards back to inactive, face-down state */
 	function revertCards(els){
@@ -64,7 +67,7 @@ for (var j in cards){
 				els[n].classList.add("inactive");
 				els[n].classList.remove("active");
 			}
-		}, 250);
+		}, delay);
 	}
 
 	/* remove matched cards from view */
@@ -76,7 +79,7 @@ for (var j in cards){
 				document.body.removeChild(els[n]);
 			}
 			
-		}, 250);		
+		}, delay);		
 	}
 
 	/* manages card behavior */
